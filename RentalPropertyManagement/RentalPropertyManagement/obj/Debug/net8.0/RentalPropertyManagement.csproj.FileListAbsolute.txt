@@ -1,0 +1,14 @@
+C:\Users\Admin\source\repos\RentalPropertyManagement\RentalPropertyManagement\bin\Debug\net8.0\RentalPropertyManagement.exe
+C:\Users\Admin\source\repos\RentalPropertyManagement\RentalPropertyManagement\bin\Debug\net8.0\RentalPropertyManagement.deps.json
+C:\Users\Admin\source\repos\RentalPropertyManagement\RentalPropertyManagement\bin\Debug\net8.0\RentalPropertyManagement.runtimeconfig.json
+C:\Users\Admin\source\repos\RentalPropertyManagement\RentalPropertyManagement\bin\Debug\net8.0\RentalPropertyManagement.dll
+C:\Users\Admin\source\repos\RentalPropertyManagement\RentalPropertyManagement\bin\Debug\net8.0\RentalPropertyManagement.pdb
+C:\Users\Admin\source\repos\RentalPropertyManagement\RentalPropertyManagement\obj\Debug\net8.0\RentalPropertyManagement.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Admin\source\repos\RentalPropertyManagement\RentalPropertyManagement\obj\Debug\net8.0\RentalPropertyManagement.AssemblyInfoInputs.cache
+C:\Users\Admin\source\repos\RentalPropertyManagement\RentalPropertyManagement\obj\Debug\net8.0\RentalPropertyManagement.AssemblyInfo.cs
+C:\Users\Admin\source\repos\RentalPropertyManagement\RentalPropertyManagement\obj\Debug\net8.0\RentalPropertyManagement.csproj.CoreCompileInputs.cache
+C:\Users\Admin\source\repos\RentalPropertyManagement\RentalPropertyManagement\obj\Debug\net8.0\RentalPropertyManagement.dll
+C:\Users\Admin\source\repos\RentalPropertyManagement\RentalPropertyManagement\obj\Debug\net8.0\refint\RentalPropertyManagement.dll
+C:\Users\Admin\source\repos\RentalPropertyManagement\RentalPropertyManagement\obj\Debug\net8.0\RentalPropertyManagement.pdb
+C:\Users\Admin\source\repos\RentalPropertyManagement\RentalPropertyManagement\obj\Debug\net8.0\RentalPropertyManagement.genruntimeconfig.cache
+C:\Users\Admin\source\repos\RentalPropertyManagement\RentalPropertyManagement\obj\Debug\net8.0\ref\RentalPropertyManagement.dll
