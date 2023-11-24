@@ -82,7 +82,7 @@
             {
                 new Room
                 (
-                    200,
+                    400,
                     "Fully furnished",
                     500,
                     "123 Main Street",
@@ -91,7 +91,7 @@
                 ),
                 new Room
                 (
-                    300,
+                    200,
                     "Not fully furnished",
                     700,
                     "456 Main Street",
@@ -129,7 +129,7 @@
             Console.WriteLine("Search Results:");
             foreach (Room result in searchResults)
             {
-                Console.WriteLine($"Area: {result.Area} sq.ft, Price: ${result.Price}");
+                Console.WriteLine($"Area: {result.Area} sq.ft, Price: ${result.Price}, Owner: {result.Owner.Name}");
             }
         }
     }

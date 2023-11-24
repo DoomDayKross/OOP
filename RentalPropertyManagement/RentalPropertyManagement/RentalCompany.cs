@@ -35,7 +35,7 @@ namespace RentalPropertyManagement
                     }
                 }
             }
-            matchingRooms = matchingRooms.OrderBy(room => room.Price).ToList();
+            matchingRooms = matchingRooms.OrderBy(room => room.Area).ThenBy(room => room.Price).ToList();
             return matchingRooms;
         }
     }

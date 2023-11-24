@@ -19,6 +19,10 @@ namespace RentalPropertyManagement
             get { return starRating; }
             set { starRating = value; }
         }
+        public string Name
+        {
+            get { return name; }
+        }
         public override void PrintInfo()
         {
             Console.WriteLine("Owner's info: ");
