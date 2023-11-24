@@ -124,6 +124,13 @@
             );
             contract2.DisplayContractDetails();
             contract2.MonthlyPayment(50, 80);
+            RentalCompany rentalCompany = new RentalCompany("12 Bell Street", "E022");
+            List<Room> searchResults = rentalCompany.SearchRooms(new List<List<Room>> { rooms, rooms2 },200, 300, 500, 700);
+            Console.WriteLine("Search Results:");
+            foreach (Room result in searchResults)
+            {
+                Console.WriteLine($"Area: {result.Area} sq.ft, Price: ${result.Price}");
+            }
         }
     }
 }

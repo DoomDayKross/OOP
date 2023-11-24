@@ -61,5 +61,10 @@ namespace RentalPropertyManagement
                 Console.WriteLine("No pet allow\n");
             }
         }
+        public bool MatchSearchCriteria(int minArea, int maxArea, double minPrice, double maxPrice)
+        {
+            // Check if the room matches the search criteria
+            return Area >= minArea && Area <= maxArea && Price >= minPrice && Price <= maxPrice;
+        }
     }
 }

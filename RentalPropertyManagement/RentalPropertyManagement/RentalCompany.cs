@@ -11,6 +11,7 @@ namespace RentalPropertyManagement
     {
         protected string address;
         protected string taxId;
+        private List<Room> rooms;
         public RentalCompany(string address, string taxId)
         {
             this.address = address;
@@ -20,6 +21,22 @@ namespace RentalPropertyManagement
         public void CompanyDetails()
         {
             Console.WriteLine($"Company Details:\nAddress: {address}\nTax ID: {taxId}");
+        }
+        public List<Room> SearchRooms(List<List<Room>> rooms,int minArea, int maxArea, double minPrice, double maxPrice)
+        {
+            List<Room> matchingRooms = new List<Room>();
+            foreach (List<Room> availableRooms in rooms)
+            {
+                foreach (Room room in availableRooms)
+                {
+                    if (room.MatchSearchCriteria(minArea, maxArea, minPrice, maxPrice))
+                    {
+                        matchingRooms.Add(room);
+                    }
+                }
+            }
+            matchingRooms = matchingRooms.OrderBy(room => room.Price).ToList();
+            return matchingRooms;
         }
     }
 }
