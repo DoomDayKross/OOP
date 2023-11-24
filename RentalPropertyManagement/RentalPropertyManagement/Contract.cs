@@ -17,6 +17,7 @@ namespace RentalPropertyManagement
         protected string compensationInfo;
         protected double extra = 0;
         protected double total = 0;
+        protected double ultiCost = 0;
         protected DateTime startDate;
         protected bool isTerminated = true;
         public Contract(double depositAmount, List<Room> roomList,Renter renter, Brocker brocker,DateTime startDate, DateTime expiryDate, string compensationInfo)
@@ -35,7 +36,7 @@ namespace RentalPropertyManagement
         {
             return depositAmount;
         }
-        public virtual void DisplayContractDetails()
+        public void DisplayContractDetails()
         {
             Console.WriteLine($"Contract Details:\nDeposit Amount: ${depositAmount}\nStart Date: {startDate}\nExpiry Date: {expiryDate}\nCompensation Info: {compensationInfo}\n");
             int count = 1;
@@ -60,13 +61,13 @@ namespace RentalPropertyManagement
             extra = y;
             return extra;
         }
-        public double CalTotalMoney()
+        public double CalTotalMoney(double x, double y)
         {
             foreach (Room room in roomList)
             {
-                total += room.Price + extra;
+                total += room.Price;
             }
-            return total;
+            return total + ultiCost + extra;
         }
         public void MaintenanceSchedule()
         {
@@ -75,6 +76,14 @@ namespace RentalPropertyManagement
             {
                 Console.WriteLine(startDate.AddMonths(i));
             }
+        }
+        public void UtilityBills(double x, double y)
+        {
+            foreach (Room room in roomList)
+            {
+                ultiCost += x + y;
+            }
+            Console.WriteLine($"Your monthly electrical and water bill: {ultiCost}");
         }
     }
 }

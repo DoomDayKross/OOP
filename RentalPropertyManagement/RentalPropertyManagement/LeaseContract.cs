@@ -11,14 +11,18 @@ namespace RentalPropertyManagement
         public LeaseContract(double depositAmount, List<Room> roomList,Renter renter, Brocker brocker,DateTime startDate, DateTime expiryDate, string compensationInfo) : base (depositAmount, roomList, renter, brocker, startDate, expiryDate, compensationInfo)
         {
         }
-        public override void DisplayContractDetails()
+        public void MonthlyPayment(double x, double y)
         {
-            base.DisplayContractDetails();
-            Console.WriteLine($"Your monthly payment: {CalTotalMoney()}");
+            UtilityBills(x, y);
+            Console.WriteLine($"Your monthly payment: {CalTotalMoney(x, y)}");
         }
-        public void Report()
+        public void LeaveReview(string x)
         {
-            renter.RepScore -= 5;
+            Console.WriteLine(x);
+        }
+        public void StarReview()
+        {
+            owner.StarRating -= 5;
         }
     }
 }

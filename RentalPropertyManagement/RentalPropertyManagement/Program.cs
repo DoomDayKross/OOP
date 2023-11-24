@@ -110,6 +110,7 @@
                 "No compensation for early termination"
             );
             contract.DisplayContractDetails();
+            contract.MonthlyPayment(70, 80);
             Console.WriteLine("\n");
             LeaseContract contract2 = new LeaseContract
             (
@@ -122,6 +123,7 @@
                 "No compensation for early termination"
             );
             contract2.DisplayContractDetails();
+            contract2.MonthlyPayment(50, 80);
         }
     }
 }
