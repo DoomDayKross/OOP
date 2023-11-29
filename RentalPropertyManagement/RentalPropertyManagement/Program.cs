@@ -1,4 +1,6 @@
-﻿namespace RentalPropertyManagement
+﻿using static RentalPropertyManagement.Human;
+
+namespace RentalPropertyManagement
 {
     class Program
     {
@@ -131,6 +133,14 @@
             {
                 Console.WriteLine($"Area: {result.Area} sq.ft, Price: ${result.Price}, Owner: {result.Owner.Name}");
             }
+
+            NotificationService notificationService = new NotificationService();
+            notificationService.SendNotification(owner2, "Your property inspection is due next week.");
+            notificationService.SendNotification(renter, "Rent payment reminder: Due in 3 days.");
+
+            // Display notifications for each user
+            NotificationDisplay.DisplayNotifications(owner2);
+            NotificationDisplay.DisplayNotifications(renter);
         }
     }
 }
