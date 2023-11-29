@@ -11,7 +11,6 @@ namespace RentalPropertyManagement
     {
         protected string address;
         protected string taxId;
-        protected Owner owner;
         private List<Room> rooms;
         public RentalCompany(string address, string taxId)
         {
@@ -36,7 +35,7 @@ namespace RentalPropertyManagement
                     }
                 }
             }
-            matchingRooms = matchingRooms.OrderBy(room => room.Price).ToList();
+            matchingRooms = matchingRooms.OrderBy(room => room.Area).ThenBy(room => room.Price).ToList();
             return matchingRooms;
         }
     }

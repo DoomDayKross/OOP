@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RentalPropertyManagement
 {
-    class Human
+    public class Human
     {
         protected string name;
         protected int id;
@@ -27,5 +27,5 @@ namespace RentalPropertyManagement
         {
             Console.WriteLine($"Name: {name}\nID: {id}\nGender:{gender}\nAddress: {address}\nPhone number: {phoneNo}\nJob: {job}");
         }
-    }
+        }
 }
