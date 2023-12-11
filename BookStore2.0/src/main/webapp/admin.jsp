@@ -168,7 +168,7 @@
     <p><b>- Delete a product:</b></p>
     
     <label>Product:</label>
-    <input type="text" name="product"><br>
+    <input type="text" name="productCode"><br>
     
     <p><b>- Delete an invoice:</b></p>
     
@@ -177,7 +177,7 @@
     
     <p><b>- Delete a book:</b></p>
     
-    <label>Invoice:</label>
+    <label>Book's name:</label>
     <input type="text" name="bookName"><br>
     <label>&nbsp;</label>    
     <input type="submit" value="Confirm delete" class="margin_left">
@@ -199,6 +199,49 @@
     <label>Phone number:</label>
     <input type="text" name="phoneNo"><br>
     
+    <p><b>- Insert a new product:</b></p>
+    
+    <label>Product's code:</label>
+    <input type="text" name="productCode"><br>
+    
+    <label>Price:</label>
+    <input type="text" name="price"><br>
+    
+    <p><b>- Insert a new line item:</b></p>
+    
+    <label>Quantity:</label>
+    <input type="text" name="quantity"><br>
+    
+    <label>Discount:</label>
+    <input type="text" name="discount"><br>
+    
+    <p><b>- Insert a new invoice:</b></p>
+    
+    <label>Invoice ID:</label>
+    <input type="text" name="invoiceId"><br>
+    
+    <label>Invoice Date:</label>
+    <input type="text" name="invoiceDate"><br>
+    
+    <p><b>- Insert new book:</b></p>
+    
+    <label>Book's name:</label>
+    <input type="text" name="bookName"><br>
+    
+    <label>Author:</label>
+    <input type="text" name="author"><br>
+    
+    <label>Publisher:</label>
+    <input type="text" name="publisher"><br>
+    
+    <label>Detail:</label>
+    <input type="text" name="detail"><br>
+    
+    <label>Genre:</label>
+    <input type="text" name="genre"><br>
+    
+    <label>Release Date:</label>
+    <input type="text" name="releaseDate"><br>
     <label>&nbsp;</label>    
     <input type="submit" value="Confirm insert" class="margin_left">
 </form>
