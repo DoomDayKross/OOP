@@ -1,0 +1,10 @@
+<Context path="/BookStore">
+	<Resource name="jdbc/bookStore" auth="Container"
+		driverClassName="org.postgresql.Driver"
+		url="jdbc:postgresql://localhost:5432/bookStore?autoReconnect=true"
+		username="postgres" password="123456"
+		maxTotal="100" maxIdle="30" maxWaitMillis ="10000"
+		logAbandoned="true" removeAbandoned="true"
+		removeAbandonedTimeout="60" type="javax.sql.DataSource" />
+	<ResourceLink name="jdbc/bookStore" global="jdbc/bookStore" type="javax.sql.DataSource" />
+</Context>
