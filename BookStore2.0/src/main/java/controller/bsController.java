@@ -9,9 +9,8 @@ import java.io.*;
 import java.util.*;
 import business.*;
 import util.*;
-import data.DescriptionDB;
-import data.ProductDB;
-import data.UserDB;
+import data.*;
+
 
 @WebServlet(urlPatterns="/bs")
 public class bsController extends HttpServlet {
@@ -81,6 +80,50 @@ public class bsController extends HttpServlet {
                 }
 
                 request.setAttribute("message", message);
+            } else if (action.equals("updateDescription")) {
+                String bookName = request.getParameter("bookName");
+                String author = request.getParameter("author");
+                String publisher = request.getParameter("publisher");
+                String detail = request.getParameter("detail");
+                String genre = request.getParameter("genre");
+                String releaseDateStr = request.getParameter("releaseDate");
+                
+                String message;
+                if (bookName == null || bookName.isEmpty() || author == null || author.isEmpty() ||
+                    publisher == null || publisher.isEmpty() || detail == null || detail.isEmpty() ||
+                    genre == null || genre.isEmpty() || releaseDateStr == null || releaseDateStr.isEmpty()) {
+                    message = "Please fill out all fields for description update.";
+                } else {
+                    try {
+                        Date releaseDate = new Date();
+                        Description updatedDescription = new Description(bookName, author, publisher, detail, genre, releaseDate);
+                        DescriptionDB.update(updatedDescription);
+                        message = "Successfully updated the description.";
+                    } catch (IllegalArgumentException e) {
+                        message = "Invalid date format. Please enter a valid date (YYYY-MM-DD).";
+                    }
+                    request.setAttribute("message", message);
+                }
+            } else if (action.equals("updateLineItem")) {
+                String quantityStr = request.getParameter("quantity");
+                String itemCode= request.getParameter("itemCode");
+                String message;
+                if (quantityStr == null || quantityStr.isEmpty() || itemCode == null || itemCode.isEmpty()) {
+                    message = "Please fill out all fields for line item update.";
+                } else if (LineItemDB.itemCodeExists(itemCode)) {
+                	message = "This item already exists !";
+                }
+                else {
+                    int quantity = Integer.parseInt(quantityStr);
+                    LineItem updatedLineItem = LineItemDB.selectLineItem(quantity);
+                    if (updatedLineItem != null) {
+                    	updatedLineItem.setQuantity(quantity);
+                        LineItemDB.update(updatedLineItem);
+                        message = "Successfully updated the line item.";
+                    } else {
+                        message = "Line item not found for the given quantity and discount.";
+                    }
+                }
             } else if (action.equals("delete")) { 
                 String email = request.getParameter("email");
                 String message;
@@ -113,7 +156,23 @@ public class bsController extends HttpServlet {
                 }
 
                 request.setAttribute("message", message);
-
+                
+            } else if (action.equals("deleteDescription")) {
+                String bookName = request.getParameter("bookName");
+                String message;
+                if (bookName == null || bookName.isEmpty()) {
+                    message = "Failed to delete description because the book name is empty.";
+                } else {
+                    Description description = DescriptionDB.selectDescription(bookName);
+                    if (description != null) {
+                        DescriptionDB.delete(description);
+                        message = "Successfully deleted the description.";
+                    } else {
+                        message = "Description not found for the given book name.";
+                    }
+                }
+                request.setAttribute("message", message);
+            
             } else if (action.equals("insert")) {
                 String userName = request.getParameter("userName");
                 String email = request.getParameter("email");
@@ -194,7 +253,7 @@ public class bsController extends HttpServlet {
 	        List<Description> descriptions = DescriptionDB.selectDescriptions();
             request.setAttribute("descriptions", descriptions);
 	        sc.getRequestDispatcher(url).forward(request, response);
-	        }
+        	}
 	    }
 
     @Override

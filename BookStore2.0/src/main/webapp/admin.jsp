@@ -127,13 +127,14 @@
     <label>&nbsp;</label>    
     <input type="submit" value="Confirm update" class="margin_left">
     
+    <input type="hidden" name="action" value="updateLineItem">
     <p><b>- Update line item:</b></p>
     
-    <label>Quantity:</label>
-    <input type="text" name="quantity"><br>
+    <label>Item code:</label>
+    <input type="text" name="itemCode"><br>
     
-    <label>Discount:</label>
-    <input type="text" name="discount"><br>
+    <label>New Quantity</label>
+    <input type="text" name="quantity"><br>
     
     <label>&nbsp;</label>    
     <input type="submit" value="Confirm update" class="margin_left">
@@ -168,6 +169,15 @@
     
     <label>Release Date:</label>
     <input type="text" name="releaseDate"><br>
+    
+    <label>&nbsp;</label>    
+    <input type="submit" value="Confirm update" class="margin_left">
+    
+    <input type="hidden" name="action" value="updateDescription">
+    <p><b>- Update a description:</b></p>
+    
+    <label>Book Name:</label>
+    <input type="text" name="bookName"><br>
     
     <label>&nbsp;</label>    
     <input type="submit" value="Confirm update" class="margin_left">
@@ -207,6 +217,18 @@
     <label>&nbsp;</label>    
     <input type="submit" value="Confirm delete" class="margin_left">
 </form>
+
+	<form action="bs" method="post">
+    <input type="hidden" name="action" value="deleteDescription">
+    <p><b>- Delete a description:</b></p>
+    
+    <label>Book Name:</label>
+    <input type="text" name="bookName"><br>
+    
+    <label>&nbsp;</label>    
+    <input type="submit" value="Confirm delete" class="margin_left">
+</form>
+
 <form action="bs" method="post">
     <input type="hidden" name="action" value="insert">
     <p><b>- Insert a new user:</b></p>
