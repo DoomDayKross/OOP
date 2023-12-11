@@ -124,7 +124,7 @@ public class DescriptionDB
 	public static List<Description> selectDescriptions()
 	{
 		EntityManager em = DBUtil.getEmFactory().createEntityManager();
-		String qString = "SELECT u FROM Desciption u ";
+		String qString = "SELECT u FROM Description u ";
 		TypedQuery<Description> q = em.createQuery(qString, Description.class);
 		List<Description> descriptions;
 		try 

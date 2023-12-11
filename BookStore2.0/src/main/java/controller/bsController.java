@@ -9,6 +9,8 @@ import java.io.*;
 import java.util.*;
 import business.*;
 import util.*;
+import data.DescriptionDB;
+import data.ProductDB;
 import data.UserDB;
 
 @WebServlet(urlPatterns="/bs")
@@ -54,10 +56,32 @@ public class bsController extends HttpServlet {
                     message = "Successfully updated the user.";
                 }
 
-                List<User> users = UserDB.selectUsers();
-                request.setAttribute("users", users);
                 request.setAttribute("message", message);
-            } else if (action.equals("delete")) {
+            } else if (action.equals("updateProduct")) {
+                String productCode = request.getParameter("productCode");
+                String price = request.getParameter("price");
+                
+                String message;
+                if (productCode == null || productCode.isEmpty() || price == null || price.isEmpty()) {
+                    message = "Please provide both the product code and the new price.";
+                } else {
+                    try {
+                        double price2 = Double.parseDouble(price);
+                        Product product = ProductDB.selectProduct(productCode);
+                        if (product != null) {
+                            product.setPrice(price2);
+                            ProductDB.update(product);
+                            message = "Successfully updated the product.";
+                        } else {
+                            message = "Product not found.";
+                        }
+                    } catch (NumberFormatException e) {
+                        message = "Invalid price format. Please enter a valid number.";
+                    }
+                }
+
+                request.setAttribute("message", message);
+            } else if (action.equals("delete")) { 
                 String email = request.getParameter("email");
                 String message;
                 if (email == null || email.isEmpty()) {
@@ -72,9 +96,24 @@ public class bsController extends HttpServlet {
                     message = "Successfully deleted the user and associated information.";
                 }
 
-                List<User> users = UserDB.selectUsers();
-                request.setAttribute("users", users);
                 request.setAttribute("message", message);
+            } else if (action.equals("deleteProduct")) {
+                String productCode = request.getParameter("productCode");
+                String message;
+                if (productCode == null || productCode.isEmpty()) {
+                    message = "Failed to delete the product because the product code is empty.";
+                } else {
+                    Product product = ProductDB.selectProduct(productCode);
+                    if (product != null) {
+                        ProductDB.delete(product);
+                        message = "Successfully deleted the product.";
+                    } else {
+                        message = "Product not found.";
+                    }
+                }
+
+                request.setAttribute("message", message);
+
             } else if (action.equals("insert")) {
                 String userName = request.getParameter("userName");
                 String email = request.getParameter("email");
@@ -93,14 +132,70 @@ public class bsController extends HttpServlet {
                     message = "Successfully inserted the user.";
                 }
 
-                List<User> users = UserDB.selectUsers();
-                request.setAttribute("users", users);
                 request.setAttribute("message", message);
-            }
-        }
-
-        sc.getRequestDispatcher(url).forward(request, response);
-    }
+	        } else if (action.equals("insertProduct")) {
+	            String productCode = request.getParameter("productCode");
+	            String bookName = request.getParameter("bookName");
+	            String priceStr = request.getParameter("price");
+	            
+	            String message;
+	            if (productCode == null || productCode.isEmpty() || bookName == null || bookName.isEmpty() || priceStr == null || priceStr.isEmpty()) {
+	                message = "Please provide both the product code and the price for insertion.";
+	            } else {
+	                try {
+	                    double price = Double.parseDouble(priceStr);
+	                    Product existingProduct = ProductDB.selectProduct(productCode);
+	                    if (existingProduct == null) {
+	                    	Description info = DescriptionDB.selectDescription(bookName);
+	                        Product newProduct = new Product(productCode,info, price);
+	                        ProductDB.insert(newProduct);
+	                        message = "Successfully inserted the new product.";
+	                    } else {
+	                        message = "Product with the given code already exists.";
+	                    }
+	                } catch (NumberFormatException e) {
+	                    message = "Invalid price format. Please enter a valid number.";
+	                }
+	            }
+	            request.setAttribute("message", message);
+	        } else if (action.equals("insertDescription")) {
+	            String bookName = request.getParameter("bookName");
+	            String author = request.getParameter("author");
+	            String publisher = request.getParameter("publisher");
+	            String detail = request.getParameter("detail");
+	            String genre = request.getParameter("genre");
+	            
+	            String message;
+	            if (bookName == null || bookName.isEmpty() || author == null || author.isEmpty() ||
+	                publisher == null || publisher.isEmpty() || detail == null || detail.isEmpty() ||
+	                genre == null || genre.isEmpty()) {
+	                message = "Please fill out all fields for description insertion.";
+	            } else if (DescriptionDB.bookNameExists(bookName)){
+	            	message = "This book name already existed!";
+	            }
+	            else {
+	                try {
+	                    Date releaseDate = new Date();
+	                    Description newDescription = new Description(bookName, author, publisher, detail, genre, releaseDate);
+	                    DescriptionDB.insert(newDescription);
+	                    message = "Successfully inserted the new description.";
+	                } catch (IllegalArgumentException e) {
+	                    message = "Invalid date format. Please enter a valid date (YYYY-MM-DD).";
+	                }
+	            }
+	            request.setAttribute("message", message);
+	        }
+	        
+	        
+	        List<User> users = UserDB.selectUsers();
+	        request.setAttribute("users", users);
+	        List<Product> products = ProductDB.selectProducts();
+	        request.setAttribute("products", products);
+	        List<Description> descriptions = DescriptionDB.selectDescriptions();
+            request.setAttribute("descriptions", descriptions);
+	        sc.getRequestDispatcher(url).forward(request, response);
+	        }
+	    }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) 

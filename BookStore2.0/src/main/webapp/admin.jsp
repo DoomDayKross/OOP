@@ -29,11 +29,13 @@
 <table>
     <tr>
         <th>Product Code</th>
+        <th>Book's name</th>
         <th>Price</th>
     </tr>
-    <c:forEach var="user" items="${requestScope.users}">
+    <c:forEach var="product" items="${requestScope.products}">
         <tr>
             <td><c:out value='${product.productCode}'/></td>
+            <td><c:out value='${product.getInfor().bookName}'/></td>
             <td><c:out value='${product.price}'/></td>
         </tr>
     </c:forEach>
@@ -46,7 +48,7 @@
         <th>Quantity</th>
         <th>Discount</th>
     </tr>
-    <c:forEach var="user" items="${requestScope.users}">
+    <c:forEach var="lineItem" items="${requestScope.lineItems}">
         <tr>
             <td><c:out value='${lineItem.quantity}'/></td>
             <td><c:out value='${lineItem.discount}'/></td>
@@ -60,7 +62,7 @@
     <tr>
         <th>Quantity</th>
     </tr>
-    <c:forEach var="user" items="${requestScope.users}">
+    <c:forEach var="invoice" items="${requestScope.invoices}">
         <tr>
             <td><c:out value='${invoice.quantity}'/></td>
         </tr>
@@ -78,7 +80,7 @@
         <th>Genre</th>
         <th>Release Date</th>
     </tr>
-    <c:forEach var="user" items="${requestScope.users}">
+    <c:forEach var="description" items="${requestScope.descriptions}">
         <tr>
             <td><c:out value='${description.bookName}'/></td>
             <td><c:out value='${description.author}'/></td>
@@ -110,6 +112,10 @@
     <label>New password:</label>
     <input type="text" name="password"><br>
     
+    <label>&nbsp;</label>    
+    <input type="submit" value="Confirm update" class="margin_left">
+    
+    <input type="hidden" name="action" value="updateProduct">
     <p><b>- Update a product:</b></p>
     
     <label>Product's code:</label>
@@ -117,6 +123,9 @@
     
     <label>Price:</label>
     <input type="text" name="price"><br>
+    
+    <label>&nbsp;</label>    
+    <input type="submit" value="Confirm update" class="margin_left">
     
     <p><b>- Update line item:</b></p>
     
@@ -126,6 +135,9 @@
     <label>Discount:</label>
     <input type="text" name="discount"><br>
     
+    <label>&nbsp;</label>    
+    <input type="submit" value="Confirm update" class="margin_left">
+    
     <p><b>- Update invoice:</b></p>
     
     <label>Invoice ID:</label>
@@ -133,6 +145,9 @@
     
     <label>Invoice Date:</label>
     <input type="text" name="invoiceDate"><br>
+    
+    <label>&nbsp;</label>    
+    <input type="submit" value="Confirm update" class="margin_left">
     
     <p><b>- Update description:</b></p>
     
@@ -157,7 +172,6 @@
     <label>&nbsp;</label>    
     <input type="submit" value="Confirm update" class="margin_left">
 </form>
-
 <form action="bs" method="post">
     <input type="hidden" name="action" value="delete">
     <p><b>- Delete an user:</b></p>
@@ -165,24 +179,34 @@
     <label>His/Her email:</label>
     <input type="email" name="email"><br>
     
+    <label>&nbsp;</label>    
+    <input type="submit" value="Confirm delete" class="margin_left">
+    
+    <input type="hidden" name="action" value="deleteProduct">
     <p><b>- Delete a product:</b></p>
     
-    <label>Product:</label>
+    <label>Product's code:</label>
     <input type="text" name="productCode"><br>
+    
+    <label>&nbsp;</label>    
+    <input type="submit" value="Confirm delete" class="margin_left">
     
     <p><b>- Delete an invoice:</b></p>
     
-    <label>Invoice:</label>
+    <label>Invoice's code:</label>
     <input type="text" name="invoiceCode"><br>
+    
+    <label>&nbsp;</label>    
+    <input type="submit" value="Confirm delete" class="margin_left">
     
     <p><b>- Delete a book:</b></p>
     
     <label>Book's name:</label>
     <input type="text" name="bookName"><br>
+    
     <label>&nbsp;</label>    
     <input type="submit" value="Confirm delete" class="margin_left">
 </form>
-
 <form action="bs" method="post">
     <input type="hidden" name="action" value="insert">
     <p><b>- Insert a new user:</b></p>
@@ -199,14 +223,26 @@
     <label>Phone number:</label>
     <input type="text" name="phoneNo"><br>
     
+    <label>&nbsp;</label>    
+    <input type="submit" value="Confirm insert" class="margin_left">
+</form>
+<form action="bs" method="post">
+    <input type="hidden" name="action" value="insertProduct">
     <p><b>- Insert a new product:</b></p>
     
     <label>Product's code:</label>
     <input type="text" name="productCode"><br>
     
+    <label>Book's name:</label>
+    <input type="text" name="bookName"><br>
+    
     <label>Price:</label>
     <input type="text" name="price"><br>
     
+    <label>&nbsp;</label>    
+    <input type="submit" value="Confirm insert" class="margin_left">
+</form>
+<form action="bs" method="post">
     <p><b>- Insert a new line item:</b></p>
     
     <label>Quantity:</label>
@@ -215,6 +251,10 @@
     <label>Discount:</label>
     <input type="text" name="discount"><br>
     
+    <label>&nbsp;</label>    
+    <input type="submit" value="Confirm insert" class="margin_left">
+</form>
+<form action="bs" method="post">
     <p><b>- Insert a new invoice:</b></p>
     
     <label>Invoice ID:</label>
@@ -223,6 +263,11 @@
     <label>Invoice Date:</label>
     <input type="text" name="invoiceDate"><br>
     
+    <label>&nbsp;</label>    
+    <input type="submit" value="Confirm insert" class="margin_left">
+</form>
+<form action="bs" method="post">
+	<input type="hidden" name="action" value="insertDescription">
     <p><b>- Insert new book:</b></p>
     
     <label>Book's name:</label>
@@ -242,6 +287,7 @@
     
     <label>Release Date:</label>
     <input type="text" name="releaseDate"><br>
+    
     <label>&nbsp;</label>    
     <input type="submit" value="Confirm insert" class="margin_left">
 </form>
